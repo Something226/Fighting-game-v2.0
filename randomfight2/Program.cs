@@ -22,6 +22,7 @@ namespace RandomFight
             //Initial information about what the user should do
             System.Console.WriteLine("Welcome to this text based fighting game!\nFirst you will need to create a character.");
 
+            //Character creation method
             void Charcreator() {
                 System.Console.WriteLine("What will you name your character?:");        
                
@@ -41,8 +42,23 @@ namespace RandomFight
                         Charcreator();
                     }
                   }     
-                System.Console.WriteLine("You will now need to assign your " + skillpoints + " skillpoints!\nWrite either dodge or strength in the console to assign your points:");
-                while
+                System.Console.WriteLine("You will now need to assign your " + skillpoints + " skillpoints!\nWrite either DODGE or STRENGTH in the console to assign your points:");
+                    while(answer != "dodge" && answer != "strength")
+                    {
+                        answer = Console.ReadLine();
+                        answer = answer.ToLower();
+                    }
+
+                    if(answer == "dodge")
+                    {
+                        System.Console.WriteLine("Coolinmg");
+                        Console.ReadLine();
+                    }
+                    if (answer == "strength")
+                    {
+                        System.Console.WriteLine("coosoflds");
+                        Console.ReadLine();
+                    }
             
             }
 
@@ -76,12 +92,12 @@ namespace RandomFight
 
              else if (player <= 0)
              {
-                 System.Console.WriteLine("Fighter 1 Lost! Fighter 2 Is The Winner!");
+                 System.Console.WriteLine(charname + " Lost! Enemy Is The Winner!");
              }
 
              else if (fighter <= 0)
              {
-                 System.Console.WriteLine("Fighter 2 Lost! Fighter 1 Is The Winner!");
+                 System.Console.WriteLine("Enemy Lost! " + charname + " Is The Winner!");
              }
 
             }
