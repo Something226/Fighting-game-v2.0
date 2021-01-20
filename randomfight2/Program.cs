@@ -7,8 +7,7 @@ namespace RandomFight
         static void Main(string[] args)
         {
             //Random number generator, Randomizes damage
-            Random damage = new Random();
-            Random health = new Random();
+            Random generator = new Random();
 
             //datatypes are decleared here
             int player = 100;
@@ -124,8 +123,10 @@ namespace RandomFight
                                 answer = "";
                        }
                 } 
-            //Text telling the user that all points are assigned   
-
+            //Text telling the user that all points are assigned
+            System.Console.WriteLine("All points are assigned!\nYour character now has " + dodge + " dodge and " + strength + " strength!\nPress ENTER to proceed" );
+            Console.ReadLine();
+            
             }
 
             
@@ -134,14 +135,14 @@ namespace RandomFight
             void Fightsequence() {
             while (player >= 0 && fighter >= 0)
              {
-                 int damage1 = damage.Next(1, 21);
-                 int damage2 = damage.Next(1, 21);
+                 int damage1 = generator.Next(1, 21);
+                 int damage2 = generator.Next(1, 21);
  
                  player -= damage2;
                  fighter -= damage1;
  
                  System.Console.WriteLine(charname +" Attacks Enemy for " + damage1 + " Damage! Enemy HP is now: " + fighter);
-                 System.Console.WriteLine("Enemy Attacks " + charname + " for " + damage2 + " Damage! " + charname + "HP is now: " + player);
+                 System.Console.WriteLine("Enemy Attacks " + charname + " for " + damage2 + " Damage! " + charname + " HP is now: " + player);
  
                  System.Console.WriteLine("Press ENTER To Continue");
                  Console.ReadLine();
