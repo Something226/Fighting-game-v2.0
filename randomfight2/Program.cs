@@ -21,8 +21,10 @@ namespace RandomFight
             string answer = "";
 
             //Initial information about what the user should do
-            System.Console.WriteLine("Welcome to this text based fighting game!\nFirst you will need to create a character.");
+            void Starttext() {
 
+                System.Console.WriteLine("Welcome to this text based fighting game!\nFirst you will need to create a character.");
+            }
             //Character creation method
             void Charcreator() {
                 System.Console.WriteLine("What will you name your character?:");        
@@ -124,7 +126,8 @@ namespace RandomFight
                        }
                 } 
             //Text telling the user that all points are assigned
-            System.Console.WriteLine("All points are assigned!\nYour character now has " + dodge + " dodge and " + strength + " strength!\nPress ENTER to proceed" );
+            System.Console.WriteLine("All points are assigned!\nYour character now has " + dodge + " dodge and " + strength + " strength!\nPress ENTER to proceed");
+
             Console.ReadLine();
             
             }
@@ -133,6 +136,7 @@ namespace RandomFight
 
             //While-loop that runs as long as both fighters have HP left
             void Fightsequence() {
+
             while (player >= 0 && fighter >= 0)
              {
                  int damage1 = generator.Next(1, 21);
@@ -173,14 +177,16 @@ namespace RandomFight
 
             //Writeline that tells the user to exit
             void Endtext() {
-             System.Console.WriteLine("Would you like to fight again?");
-             System.Console.WriteLine("Press ENTER To Exit");
 
-             Console.ReadLine();
+                System.Console.WriteLine("Would you like to fight again?");
+                System.Console.WriteLine("Press ENTER To Exit");
+
+                Console.ReadLine();
 
             }
 
             //Methods placed in corresponding order
+            Starttext();
 
             Charcreator();
             Statassignment();
