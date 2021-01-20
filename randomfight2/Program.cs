@@ -12,10 +12,12 @@ namespace RandomFight
 
             //datatypes are decleared here
             int player = 100;
-            int playerdodge;
-            int playerstrength;
             int fighter = 100;
             int skillpoints = 20;
+            int dodge = 5;
+            int strength = 5;
+            int assign = 0;
+
             string charname = "";
             string answer = "";
 
@@ -29,38 +31,104 @@ namespace RandomFight
                 charname = Console.ReadLine();      
                
                 System.Console.WriteLine(charname + "?\nY/N");      
-                  while (answer != "y")
-                  {
-                    answer = Console.ReadLine();
-                    answer = answer.ToLower();      
-                   
-                    if(answer != "y" && answer != "n"){
-                        
-                        System.Console.WriteLine("Please type Y or N to accept or change your name");
-                    }
-                    if(answer == "n"){
-                        Charcreator();
-                    }
-                  }     
-                System.Console.WriteLine("You will now need to assign your " + skillpoints + " skillpoints!\nWrite either DODGE or STRENGTH in the console to assign your points:");
-                    while(answer != "dodge" && answer != "strength")
+                    while (answer != "y")
                     {
-                        answer = Console.ReadLine();
-                        answer = answer.ToLower();
-                    }
+                      answer = Console.ReadLine();
+                      answer = answer.ToLower();      
 
-                    if(answer == "dodge")
-                    {
-                        System.Console.WriteLine("Coolinmg");
-                        Console.ReadLine();
-                    }
-                    if (answer == "strength")
-                    {
-                        System.Console.WriteLine("coosoflds");
-                        Console.ReadLine();
-                    }
-            
+                      if(answer != "y" && answer != "n"){
+
+                          System.Console.WriteLine("Please type Y or N to accept or change your name");
+                      }
+                      if(answer == "n"){
+                          Charcreator();
+                      }
+                    }  
+            }   
+
+            //Stat assignement method
+            void Statassignment() {
+
+                //While-loop that runs as long as the user has points available
+                while(skillpoints != 0)
+                {
+                   System.Console.WriteLine("You will now need to assign your " + skillpoints + " skillpoints!\nWrite either DODGE or STRENGTH in the console to assign your points:");
+
+                    //While-loop checking if the user has typed "strength" or "dodge"
+                       while(answer != "dodge" && answer != "strength")
+                       {
+                            answer = Console.ReadLine();
+                            answer = answer.ToLower();
+
+                            if (answer != "dodge" && answer != "strength")
+                            {
+                                System.Console.WriteLine("Please type DODGE or STRENGTH to assign your points");
+                            }
+                       }
+                        
+                        //If-statements checking if the user choose either dodge or strength
+                           if(answer == "dodge")
+                           {
+                               System.Console.WriteLine("You currently have " + dodge + " dodge points. How many do you want to add?\n(You can add a maximum of " + skillpoints + " points, add atleast 1 point)");
+
+                               while(assign <= 0 || assign > skillpoints)
+                               { 
+                                int.TryParse(Console.ReadLine(), out assign);
+
+                                    if (assign <= 0)
+                                    {
+                                        System.Console.WriteLine("Please add atleast 1 point");
+                                    }
+                                    if (assign > skillpoints)
+                                    {
+                                        System.Console.WriteLine("You can't add more points than you have >:(");
+                                    }
+                                }
+
+                                skillpoints = skillpoints - assign;
+                                dodge = dodge + assign;
+
+                                System.Console.WriteLine(assign + " points added to dodge. You now have " + dodge + " dodge.");
+
+                                assign = 0;
+
+                                answer = "";
+
+                                
+                           }
+                           if (answer == "strength")
+                           {
+                               System.Console.WriteLine("You currently have " + strength + " strength points. How many do you want to add?\n(You can add a maximum of " + skillpoints + " points, add atleast 1 point)");
+                                
+                                while(assign <= 0 || assign > skillpoints)
+                               { 
+                                int.TryParse(Console.ReadLine(), out assign);
+
+                                    if (assign <= 0)
+                                    {
+                                        System.Console.WriteLine("Please add atleast 1 point");
+                                    }
+                                    if (assign > skillpoints)
+                                    {
+                                        System.Console.WriteLine("You can't add more points than you have >:(");
+                                    }
+                                }
+                                
+                                skillpoints = skillpoints - assign;
+                                strength = strength + assign;
+
+                                System.Console.WriteLine(assign + " points added to strength. You now have " + strength + " strength.");
+
+                                assign = 0;
+
+                                answer = "";
+                       }
+                } 
+            //Text telling the user that all points are assigned   
+
             }
+
+            
 
             //While-loop that runs as long as both fighters have HP left
             void Fightsequence() {
@@ -114,6 +182,7 @@ namespace RandomFight
             //Methods placed in corresponding order
 
             Charcreator();
+            Statassignment();
 
             Fightsequence();
             Fightoutcome();
